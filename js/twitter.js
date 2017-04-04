@@ -36,6 +36,7 @@ function publicarTweet(){
     publicaciones.insertBefore(articulo, publicaciones.firstChild);
     escrituraDeTweet.value = "";
     autor.value = "";
+    document.getElementById("caracteres").innerText = 0;
   }
 }
 
