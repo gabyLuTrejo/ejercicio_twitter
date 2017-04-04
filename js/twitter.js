@@ -1,4 +1,3 @@
-console.log("Hola");
 
 var click = 0;
 var contadorClicks = document.body;
@@ -10,8 +9,8 @@ var tweet = document.getElementById("tweet");
 
 contadorClicks.addEventListener("click", clicks);
 escrituraDeTweet.addEventListener("keyup", contadorDeCaracteres);
+tweet.addEventListener("click", noContarClicks)
 publicar.addEventListener("click", publicarTweet);
-
 
 function contadorDeCaracteres(){
   var numeroCaracteres = escrituraDeTweet.value.length;
@@ -24,24 +23,22 @@ function clicks(){
 }
 
 function publicarTweet(){
-  var articulo = document.createElement("article");
-  var parrafo = document.createElement("p");
-  var parrafo2 = document.createElement("p");
-  parrafo.innerText = escrituraDeTweet.value;
-  parrafo2.innerText = "Por: " + autor.value;
-  articulo.appendChild(parrafo);
-  articulo.appendChild(parrafo2);
-  publicaciones.insertBefore(articulo, publicaciones.firstChild);
-  escrituraDeTweet.value = "";
-  autor.value = "";
-
+  if (escrituraDeTweet.value == "" || autor.value == ""){
+    alert("Llena todos los campos para publicar");
+  }else {
+    var articulo = document.createElement("article");
+    var parrafo = document.createElement("p");
+    var parrafo2 = document.createElement("p");
+    parrafo.innerText = escrituraDeTweet.value;
+    parrafo2.innerText = "Por: " + autor.value;
+    articulo.appendChild(parrafo);
+    articulo.appendChild(parrafo2);
+    publicaciones.insertBefore(articulo, publicaciones.firstChild);
+    escrituraDeTweet.value = "";
+    autor.value = "";
+  }
 }
 
-
-///
-// var parrafo = document.createElement("HR");
-// var texto = document.getElementById("vistaPrevia").cloneNode(true);
-// texto.id = "publicado";
-// var enviar = document.getElementById("publicaciones");
-// enviar.insertBefore(parrafo, enviar.childNodes[0]);
-// enviar.insertBefore(texto, enviar.childNodes[0])
+function noContarClicks(){
+    event.stopPropagation();
+}
